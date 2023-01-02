@@ -4,6 +4,8 @@ export type AllowedTheme = NonNullable<PaletteOptions["mode"]>;
 
 export const DEFAULT_THEME: AllowedTheme = "dark";
 
+// Reference to the default theme and its properties: https://mui.com/material-ui/customization/default-theme/
+
 const baseTheme = {
     palette: {
         primary: { main: "#9147FF" },
