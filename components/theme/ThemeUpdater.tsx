@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { css, IconButton, Tooltip } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
+import styled from "@emotion/styled";
+
+const EmptyDiv = styled.div`
+    min-height: 40px;
+`;
 
 type ThemeUpdaterProps = {};
 
@@ -13,14 +18,7 @@ export const ThemeUpdater = (props: ThemeUpdaterProps) => {
     // When mounted on client, now we can show the UI
     useEffect(() => setMounted(true), []);
 
-    if (!mounted)
-        return (
-            <div
-                css={css`
-                    min-height: 40px;
-                `}
-            ></div>
-        );
+    if (!mounted) return <EmptyDiv></EmptyDiv>;
 
     const toggleMode = () => setTheme(resolvedTheme === "light" ? "dark" : "light");
 
