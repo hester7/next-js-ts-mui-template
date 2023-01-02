@@ -12,15 +12,6 @@ const HomePage: NextPage = () => {
     // When mounted on client, now we can show the UI
     useEffect(() => setMounted(true), []);
 
-    if (!mounted)
-        return (
-            <div
-                css={css`
-                    min-height: 40px;
-                `}
-            ></div>
-        );
-
     const text = toTitleCase(`${resolvedTheme} mode`);
 
     return (
@@ -39,14 +30,18 @@ const HomePage: NextPage = () => {
                     grid-gap: 8px;
                 `}
             >
-                <Typography
-                    variant="h1"
-                    sx={(theme) => ({
-                        color: findClosestAccessibleColor("#f7931a", theme.palette.background.default),
-                    })}
-                >
-                    {text}
-                </Typography>
+                {mounted ? (
+                    <Typography
+                        variant="h1"
+                        sx={(theme) => ({
+                            color: findClosestAccessibleColor("#f7931a", theme.palette.background.default),
+                        })}
+                    >
+                        {text}
+                    </Typography>
+                ) : (
+                    <div></div>
+                )}
             </div>
         </main>
     );
